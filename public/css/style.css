@@ -1,0 +1,95 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+
+:root{
+    --color-primary: #7F56DA;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.fs-s-sm {
+    font-size: 13px !important;
+}
+
+.fs-sm {
+    font-size: 14.3px !important;
+}
+
+.color-primary {
+    color: var(--color-primary) !important;
+}
+
+.btn.btn-primary {
+    background: var(--color-primary);
+}
+
+.btn.btn-primary:focus {
+    background: #6f42ce;
+}
+
+hr {
+    opacity: 18%;
+}
+
+#backgroundGradient {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #bfa7f7, #fbc2eb);
+    height: 250px;
+}
+
+#header-profile {
+    position: relative;
+    top: -40px;
+}
+
+.row.detail-profil {
+    background: #f3f0f9;
+}
+
+.loader {
+    position: absolute;
+    z-index: 1040;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+
+.loader .slider1 {
+    background: #ff9a9e;
+    width: 100%;
+    height: 100dvh;
+    transition: 0.6s ease-in-out;
+}
+
+.loader .slider1.animate {
+    height: 0;
+    transition: 0.6s ease-in-out;
+}
+
+.loader .slider2 {
+    background: #bfa7f7;
+    width: 100%;
+    height: 100dvh;
+    transition: 0.9s ease-in-out;
+}
+
+.loader .slider2.animate {
+    height: 0;
+    transition: 0.9s ease-in-out;
+}
+
+.loader .slider3 {
+    background: #fbc2eb;
+    width: 100%;
+    height: 100dvh;
+    transition: 1.2s ease-in-out;
+}
+
+.loader .slider3.animate {
+    height: 0;
+    transition: 1.2s ease-in-out;
+}
