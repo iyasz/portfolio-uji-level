@@ -17,3 +17,11 @@ $(document).ready(function() {
     iconUrl: null,
     timeout: 4100,
 });
+
+$('.nav-link').on('click', function(){
+  $('.nav-link').removeClass('active');
+  $(this).addClass('active')
+})
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

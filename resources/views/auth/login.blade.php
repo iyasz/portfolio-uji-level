@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-5 mt-5">
-                <div class="text-center">
+                <div class="text-center mt-5">
                     <h5>Welcome To Author Gate</h5>
                 </div>
                 <div class="card border-0 shadow-sm mx-4">

@@ -22,8 +22,9 @@ Route::get('/', function () {
 
 Route::get('/', [IndexController::class, 'index']);
 
-Route::resource('/my-profil', ProfilController::class)->middleware('auth');
+Route::get('/my-profil', [ProfilController::class, 'edit'])->middleware('auth');
 
 Route::get('/auth/login', [AuthController::class, 'loginView'])->middleware('guest')->name('login');
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 

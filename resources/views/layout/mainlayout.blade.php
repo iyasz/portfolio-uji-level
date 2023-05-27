@@ -34,50 +34,31 @@
     </div>
   </div>
 
-   <nav class="navbar navbar-expand-lg shadow-sm bg-white py-3 fixed-top">
-     <div class="container">
-       <a class="navbar-brand fw-bold" href="#" class="">YzAvl</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 fs-sm" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 fs-sm" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 fs-sm" href="#">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 fs-sm" href="#">Tasks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 fs-sm" href="#">Reporting</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 fs-sm" href="#">Designer</a>
-                    </li>
-                </ul>
-                @if(Auth::user())
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('img/wangybat.png') }}" width="30" class="rounded-circle" alt="">
-                        </a>
-                        <div class="dropdown-menu border-0 shadow-sm">
-                            <a class="dropdown-item fs-s-sm" href="/my-profil">My Profil</a>
-                            <a class="dropdown-item fs-s-sm" href="/logout">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-                @endif
-            </div>
-      </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg shadow-sm bg-white py-3 fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold color-primary" href="/" class="">Avellia's</a>
+           <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+               aria-expanded="false" aria-label="Toggle navigation">
+               <span class="bi bi-justify-left"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="collapsibleNavId">
+               @yield('navbar-menu')
+               <ul class="navbar-nav ms-auto ps-3 ps-lg-auto mx-2">
+                 @if(Auth::user())
+                   <li class="nav-item dropdown">
+                       <a class=" dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           <img src="{{ asset('img/wangybat.png') }}" width="30" class="rounded-circle" alt="">
+                       </a>
+                       <ul class="dropdown-menu dropdown-menu-end rounded-1 shadow-sm ">
+                         <li><a class="dropdown-item fs-s-sm py-2" href="/my-profil">My Profil</a></li>
+                         <li><a class="dropdown-item fs-s-sm py-2" href="/logout">Log Out</a></li>
+                       </ul>
+                   </li>
+                   @endif
+               </ul>
+           </div>
+     </div>
+   </nav>
 
     @yield('content')
 

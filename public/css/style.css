@@ -5,6 +5,9 @@ body {
 
 :root{
     --color-primary: #7F56DA;
+    --color-red-primary: #f3789b;
+    --color-soft-primary: #f3f0f9;
+    --color-soft-gray: #e0e0e0;
 }
 
 .form-control:focus {
@@ -12,11 +15,11 @@ body {
 }
 
 .fs-s-sm {
-    font-size: 13px !important;
+    font-size: 12px !important;
 }
 
 .fs-sm {
-    font-size: 14.3px !important;
+    font-size: 13px !important;
 }
 
 .color-primary {
@@ -26,9 +29,52 @@ body {
 .btn.btn-primary {
     background: var(--color-primary);
 }
+.btn.btn-danger {
+    background: var(--color-red-primary);
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: 0.4s;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    transition: 0.4s;
+    background: var(--color-soft-primary);
+    border-radius: 4px;
+}
+
+.nav-link.active {
+    color: var(--color-primary) !important;
+    transition: 0.4s;
+    background: var(--color-soft-primary);
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    min-width: 13rem !important;
+    border: 1px var(--color-soft-gray) solid;
+}
+
+.dropdown-item:active {
+    background: var(--color-primary);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.navbar-toggler {
+    border: 0;
+}
 
 .btn.btn-primary:focus {
     background: #6f42ce;
+}
+
+.btn.btn-danger:focus {
+    background: #ef658c;
 }
 
 hr {
@@ -46,9 +92,29 @@ hr {
 }
 
 .row.detail-profil {
-    background: #f3f0f9;
+    background: var(--color-soft-primary);
 }
 
+.content-name-author h2 {
+    color: var(--color-red-primary);
+}
+
+.content-name-author h2 span{
+    color:  #9d78f3;
+}
+
+.author-status {
+    border: 1px var(--color-soft-gray) solid;
+    position: absolute;
+    top: 60%;
+    right: 0;
+    background: #fff;
+    cursor: pointer;
+}
+
+.tooltip-bg {
+    background: red !important;
+}
 .loader {
     position: absolute;
     z-index: 1040;
