@@ -27,7 +27,7 @@
                                 @error('password') <p class="fs-s-sm text-danger">{{$message}}</p> @enderror
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary w-100 rounded-1 fs-s-sm">Submit</button>
+                                <button class="btn btn-primary w-100 rounded-1 fs-s-sm border-0 ">Submit</button>
                             </div>
                         </div>
                     </form>
