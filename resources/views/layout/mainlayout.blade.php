@@ -20,18 +20,8 @@
 </head>
 <body>
 
-  <div class="loader">
-      <div class="row w-100">
-        <div class="col-4 p-0">
-          <div class="loader-view slider1"></div>
-        </div>
-        <div class="col-4 p-0">
-          <div class="loader-view slider2"></div>
-        </div>
-        <div class="col-4 p-0">
-        <div class="loader-view slider3"></div>
-      </div>
-    </div>
+  <div class="loader d-flex justify-content-center align-items-center">
+    <h1 id="text-animation-loader" class="position-absolute tex">Avellia Family</h1>
   </div>
 
   <nav class="navbar navbar-expand-lg shadow-sm bg-white py-3 fixed-top">
@@ -46,7 +36,7 @@
                <ul class="navbar-nav ms-auto ps-3 ps-lg-auto mx-2">
                  @if(Auth::user())
                    <li class="nav-item dropdown">
-                       <a class=" dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       <a class=" dropdown-toggle text-dark" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                            <img src="{{ asset('img/wangybat.png') }}" width="30" class="rounded-circle" alt="">
                        </a>
                        <ul class="dropdown-menu dropdown-menu-end rounded-1 shadow-sm ">

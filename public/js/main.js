@@ -1,22 +1,13 @@
 $(document).ready(function() {
-
-    $('.loader-view').addClass('animate');
-    setTimeout(function() {
-      $('.loader').remove();
-    //   $('body').css('overflow', 'visible');
-    }, 1200);
+  setInterval(function() {
+    $('.loader').addClass('animate');
+  }, 1100)
+  
+  setTimeout(function() {
+    $('.loader').remove();
+    $('body').css('overflow', 'auto');
+    }, 2030);
   });
-
-  iziToast.show({
-    title: "Benar",
-    message: "Jawaban Anda Benar!",
-    position: "topCenter",
-    drag: false,
-    pauseOnHover: false,
-    color: "green",
-    iconUrl: null,
-    timeout: 3000,
-});
 
 $('#btn-follow').on('click', function(){
   iziToast.show({
@@ -49,11 +40,12 @@ var textElement = $("#name-author");
 
 var words = textElement.text().split(" ");
 
-words[0] = "<span style='color: #9d78f3'>" + words[0] + "</span>";
+words[0] = "<span style='color: #000'>" + words[0] + "</span>";
 
-words[1] = "<span style='color: #f3789b'>" + words[1] + "</span>";
+words[1] = "<span style='color: #000'>" + words[1] + "</span>";
 
 textElement.html(words.join(" "));
 
+// tooltip bootstrap
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

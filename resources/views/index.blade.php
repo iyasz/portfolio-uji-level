@@ -14,9 +14,6 @@
     <li class="nav-item">
         <a class="nav-link px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#project">Projects</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#">Tasks</a>
-    </li>
 </ul>
 @endsection
 
@@ -191,9 +188,9 @@
                       </ul>
                       <div class="tab-content " id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
-                            <div class="row image-container">
+                            <div class="row justify-content-center">
                                 @foreach ($projectsAll as $data)
-                                <div class="col-lg-6 col-12 gy-3">
+                                <div class="col-lg-6 col-md-6 col-12 gy-3">
                                     <img src="{{asset('img/wangybat.png')}}" class="animated-item" width="100%" height="390" alt="">
                                 </div>
                                 @endforeach
