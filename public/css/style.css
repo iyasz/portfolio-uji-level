@@ -14,7 +14,7 @@ body {
     --color-soft-gray: #e0e0e0;
 }
   
-.form-control:focus {
+.form-control:focus, .form-select:focus {
     box-shadow: none;
 }
 
@@ -145,9 +145,27 @@ hr {
     transition: 0.9s ease-in-out;
 }
 
-.loader h1 {
-    font-size: 60px;
+.img-hover-url:hover .backdrop-project {
+    opacity: 1;
 }
+
+.backdrop-project {
+    content: '';
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+
+}
+
+.backdrop-project h3 {
+    color: #c5aaff;
+}
+
 
 /* .loader .slider1 {
     background: #ff9a9e;

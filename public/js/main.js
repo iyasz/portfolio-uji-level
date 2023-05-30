@@ -9,6 +9,59 @@ $(document).ready(function() {
     }, 2030);
   });
 
+  $(".nav-link.navbar").on("click", function (e) {
+    e.preventDefault();
+  
+    var linkHref = $(this).attr("href");
+    $("html, body").animate(
+      {
+        scrollTop: $(linkHref).offset().top - 90,
+      },
+      800
+    );
+    return false;
+  });
+
+$(document).ready(function() {
+    $('#statusUpdateBtn').on('click', function() {
+      $('#updateStatus').modal('show');
+    });
+});
+
+
+
+$('.editProject').on('click', function(){
+  $.ajax({
+    type: 'GET',
+    url: '/project/searchValue/'+$(this).val(),
+    success: function(e){
+      console.log(e)
+      var pemisah = "https://github.com/iyasz/";
+      var kata = e.github_url.replace(pemisah, "");
+      $('#githubProjectUpdate').val(kata)
+
+      var optionToSelect = e.category;
+      $('.editCategoryProject option').each(function() {
+        if ($(this).val() === optionToSelect) {
+          $(this).prop('selected', true);
+          return false;
+        }
+      });
+
+
+      $('.projectNameUpdate').val(e.name)
+      $('.imgUpdateProject').attr('src', '/storage/gambar/'+e.thumbnail)
+
+      $('#formProjectUpdate').attr('action', '/project/'+e.id)
+
+      $('.editDescProject').val(e.description)
+
+      $('#editStartProject').val(e.start_date)
+      $('#editFinishProject').val(e.finish_date)
+    },
+  })
+})
+
 $('#btn-follow').on('click', function(){
   iziToast.show({
     title: "😍",
@@ -40,9 +93,9 @@ var textElement = $("#name-author");
 
 var words = textElement.text().split(" ");
 
-words[0] = "<span style='color: #000'>" + words[0] + "</span>";
+words[0] = "<span style='color: #7F56DA'>" + words[0] + "</span>";
 
-words[1] = "<span style='color: #000'>" + words[1] + "</span>";
+words[1] = "<span style='color: #f3789b'>" + words[1] + "</span>";
 
 textElement.html(words.join(" "));
 

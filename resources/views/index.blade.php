@@ -3,16 +3,16 @@
 @section('navbar-menu')
 <ul class="navbar-nav mx-auto">
     <li class="nav-item">
-        <a class="nav-link px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#header-profile">Home</a>
+        <a class="nav-link navbar px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#header-profile">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#about">About</a>
+        <a class="nav-link navbar px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#about">About</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#experience">Experience</a>
+        <a class="nav-link navbar px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#project">Projects</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="#project">Projects</a>
+        <a class="nav-link navbar px-2 px-lg-auto mx-2 mb-1 mb-lg-0 fs-sm" href="">Resume</a>
     </li>
 </ul>
 @endsection
@@ -26,8 +26,8 @@
             <div class="row">
                 <div class="col-lg-2 col-5">
                     <div class="position-relative">
-                        <img src="https://static.wixstatic.com/media/269653_f8294923a5304079bed95d039fa9a193~mv2.gif" width="100%" class="rounded-circle shadow-sm border border-5 border-white" alt="">
-                        <p class="position-absolute author-status p-1 rounded-circle fs-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{$author->content}}">{{$author->emote}}</p>
+                        <img src="{{asset('storage/gambar/'.$author->photo)}}" width="100%" class="rounded-circle shadow-sm border border-5 border-white" alt="">
+                        <p class="position-absolute author-status p-1 rounded-circle fs-sm" id="statusUpdateBtn" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{$author->content}}">{{$author->emote}}</p>
                         
                     </div>
                 </div>
@@ -47,6 +47,17 @@
         </div>
     </section>
 
+    @if(SESSION('success'))
+    <div class="container my-3 ">
+        <div class="row">
+            <div class="col-12 position-relative">
+                <div class="alert alert-success fs-s-sm text-center">
+                    {{SESSION('success')}}
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
     <hr class="mx-lg-5 mx-3 d-block d-lg-none mt-0">
 
     {{-- Mobile Responsive  --}}
@@ -114,7 +125,7 @@
         </div>
     </section>
 
-    <hr class="mx-lg-5 mx-3">
+    {{-- <hr class="mx-lg-5 mx-3">
 
     <section id="experience">
         <div class="container my-4">
@@ -125,7 +136,7 @@
                 <div class="col-lg-9 col-12 ">
                     @if(Auth::user())
                     <div class="text-end mb-2">
-                        <button class="btn btn-primary fs-sm bg-transparent fw-bold border-0 rounded-1 color-primary"><i class="bi bi-plus"></i> Add Experience</button>
+                        <button class="btn btn-primary fs-sm bg-transparent fw-bold border-0 rounded-1 color-primary" data-bs-toggle="modal" data-bs-target="#experienceModal"><i class="bi bi-plus"></i> Add Experience</button>
                     </div>
                     @endif
                     <div class="row">
@@ -158,18 +169,23 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <hr class="mx-lg-5 mx-3">
     <section id="project">
         <div class="container my-4">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-12 d-lg-block d-md-block d-none">
-                    <h6>Project</h6>
+                    <h6>Recent Project</h6>
                 </div>
                 <div class="col-lg-9 col-12 ">
                     @if(Auth::user())
                     <div class="text-end mb-2">
-                        <button class="btn btn-primary fs-sm bg-transparent fw-bold border-0 rounded-1 color-primary"><i class="bi bi-plus"></i> Add Project</button>
+                        <button class="btn btn-primary fs-sm bg-transparent fw-bold border-0 rounded-1 color-primary" data-bs-toggle="modal" data-bs-target="#projectModal"><i class="bi bi-plus"></i> Add Project</button>
+                    </div>
+                    @endif
+                    @if(SESSION('success-project'))
+                    <div class="alert alert-success text-center fs-s-sm" role="alert">
+                        {{SESSION('success-project')}}
                     </div>
                     @endif
                     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
@@ -191,20 +207,107 @@
                             <div class="row justify-content-center">
                                 @foreach ($projectsAll as $data)
                                 <div class="col-lg-6 col-md-6 col-12 gy-3">
-                                    <img src="{{asset('img/wangybat.png')}}" class="animated-item" width="100%" height="390" alt="">
-                                </div>
+                                    <a href="{{$data->github_url}}" class="position-relative d-block text-white img-hover-url">
+                                           <img src="{{asset('storage/gambar/'.$data->thumbnail)}}" class="animated-item" width="100%" height="210" alt="">
+                                           <div class="backdrop-project py-4">
+                                               <h3 class=" mx-2 fw-bolder">{{$data->name}}</h3>
+                                               <h6 class="mx-2 fs-sm">@if($data->category == 1) Website @elseif($data->category == 2) Web App @else Dekstop @endif</h6>
+                                               <p class="fs-s-sm mx-2">{{$data->description}}</p>
+                                               <p class="fs-s-sm mx-2">{{ date('d M Y', strtotime($data->start_date))}} - {{ date('d M Y', strtotime($data->finish_date))}}</p>
+                                           </div>
+                                        </a>
+                                        @if(Auth::user())
+                                        <div class=" mt-3 d-flex justify-content-end">
+                                            <button data-bs-toggle="modal" value="{{$data->id}}" data-bs-target="#projectUpdateModal" class="btn btn-primary btn-sm border-0 rounded-1 me-1 editProject"><i class="bi bi-pencil"></i></button>
+                                            <form action="/project/{{$data->id}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button onclick="return confirm('Apakah Kamu Ingin Menghapus Project ini?')" class="btn btn-danger btn-sm border-0 rounded-1"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                        @endif
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-
+                            <div class="row justify-content-center">
+                                @foreach ($projectsWeb as $data)
+                                <div class="col-lg-6 col-md-6 col-12 gy-3">
+                                    <a href="{{$data->github_url}}">
+                                           <img src="{{asset('storage/gambar/'.$data->thumbnail)}}" class="animated-item" width="100%" height="210" alt="">
+                                        </a>
+                                        @if(Auth::user())
+                                        <div class=" mt-3 d-flex justify-content-end">
+                                            <button data-bs-toggle="modal" value="{{$data->id}}" data-bs-target="#projectUpdateModal" class="btn btn-primary btn-sm border-0 rounded-1 me-1 editProject"><i class="bi bi-pencil"></i></button>
+                                            <form action="/project/{{$data->id}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button onclick="return confirm('Apakah Kamu Ingin Menghapus Project ini?')" class="btn btn-danger btn-sm border-0 rounded-1"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">2.</div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">3.</div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                            <div class="row justify-content-center">
+                                @foreach ($projectsApp as $data)
+                                <div class="col-lg-6 col-md-6 col-12 gy-3">
+                                    <a href="{{$data->github_url}}">
+                                           <img src="{{asset('storage/gambar/'.$data->thumbnail)}}" class="animated-item" width="100%" height="210" alt="">
+                                        </a>
+                                        @if(Auth::user())
+                                        <div class=" mt-3 d-flex justify-content-end">
+                                            <button data-bs-toggle="modal" value="{{$data->id}}" data-bs-target="#projectUpdateModal" class="btn btn-primary btn-sm border-0 rounded-1 me-1 editProject"><i class="bi bi-pencil"></i></button>
+                                            <form action="/project/{{$data->id}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button onclick="return confirm('Apakah Kamu Ingin Menghapus Project ini?')" class="btn btn-danger btn-sm border-0 rounded-1"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                            <div class="row justify-content-center">
+                                @foreach ($projectsDekstop as $data)
+                                <div class="col-lg-6 col-md-6 col-12 gy-3">
+                                    <a href="{{$data->github_url}}">
+                                           <img src="{{asset('storage/gambar/'.$data->thumbnail)}}" class="animated-item" width="100%" height="210" alt="">
+                                        </a>
+                                        @if(Auth::user())
+                                        <div class=" mt-3 d-flex justify-content-end">
+                                            <button data-bs-toggle="modal" value="{{$data->id}}" data-bs-target="#projectUpdateModal" class="btn btn-primary btn-sm border-0 rounded-1 me-1 editProject"><i class="bi bi-pencil"></i></button>
+                                            <form action="/project/{{$data->id}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button onclick="return confirm('Apakah Kamu Ingin Menghapus Project ini?')" class="btn btn-danger btn-sm border-0 rounded-1"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                            @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                       </div>
                 </div>
             </div>
         </div>
     </section>
     <hr class="mx-lg-5 mx-3">
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-center justify-content-lg-end align-items-center">
+                    <a href="https://www.linkedin.com/in/muhammad-ilyasa-465284246/" class="me-3 h3 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+                    <a href="{{$author->detail->email_url}}" class="fs-s-sm text-decoration-none text-dark">{{$author->email}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
